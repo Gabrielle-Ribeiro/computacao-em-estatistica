@@ -1,2 +1,3 @@
-# computacao-em-estatistica
-Repositório destinado às atividades da disciplina Computação em Estatística 1
+# Computação em Estatística
+
+Repositório destinado às atividades da disciplina Computação em Estatística 1.
