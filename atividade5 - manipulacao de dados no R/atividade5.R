@@ -1,0 +1,176 @@
+# Setando diretório de trabalho
+getwd()
+setwd("/home/gabbi/Documentos/ce1/computacao-em-estatistica/atividade5")
+dir()
+
+
+# Instalando pacote necessário
+install.packages("readxl")
+library("readxl")
+
+# Importar os dados
+
+df_idh = read_excel("idh.xlsx", sheet=1, col_names=TRUE)
+head(df_idh)
+
+df_pib = read_excel("pib.xlsx", sheet=1, col_names=TRUE)
+head(df_pib)
+
+df_homicidios = read_excel("homicidios.xlsx", sheet=1, col_names=TRUE)
+head(df_homicidios)
+
+df_populacao = read_excel("populacao.xlsx", sheet=1, col_names=TRUE)
+head(df_populacao)
+
+# Manipular os dados no nome de município
+df_homicidios$Município <- paste(df_homicidios$Nome, "(", sep=" ")
+df_homicidios$Município <- paste(df_homicidios$Município, df_homicidios$UF, sep="")
+df_homicidios$Município <- paste(df_homicidios$Município, ")", sep="")
+
+# Renomeando colunas para facilitar o trabalho
+names(df_populacao)[names(df_populacao) == "Pop2000"] <- "População por Estado 2000"
+names(df_populacao)[names(df_populacao) == "Pop2010"] <- "População por Estado 2010"
+
+
+# Criando data frame de pib por ano
+df_pib_2005 = df_pib[df_pib$ANO == '2005',]
+df_pib_2005$COD_E[df_pib_2005$COD_E == "11"] <- "RO"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "12"] <- "AC"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "13"] <- "AM"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "14"] <- "RR"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "15"] <- "PA"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "16"] <- "AP"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "17"] <- "TO"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "21"] <- "MA"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "22"] <- "PI"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "23"] <- "CE"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "24"] <- "RN"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "25"] <- "PB"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "26"] <- "PE"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "27"] <- "AL"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "28"] <- "SE"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "29"] <- "BA"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "31"] <- "MG"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "32"] <- "ES"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "33"] <- "RJ"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "35"] <- "SP"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "41"] <- "PR"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "42"] <- "SC"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "43"] <- "RS"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "50"] <- "MS"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "51"] <- "MT"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "52"] <- "GO"
+df_pib_2005$COD_E[df_pib_2005$COD_E == "53"] <- "DF"
+df_pib_2005$ANO <- NULL
+df_pib_2005$COD_M <- NULL
+df_pib_2005$Município <- paste(df_pib_2005$`Nome do Município`, "(", sep=" ")
+df_pib_2005$Município <- paste(df_pib_2005$Município, df_pib_2005$COD_E, sep="")
+df_pib_2005$Município <- paste(df_pib_2005$Município, ")", sep="")
+names(df_pib_2005)[names(df_pib_2005) == "PIB_1000"] <- "PIB_1000_2005"
+
+df_pib_2010 = df_pib[df_pib$ANO == '2010',]
+df_pib_2010$COD_E[df_pib_2010$COD_E == "11"] <- "RO"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "12"] <- "AC"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "13"] <- "AM"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "14"] <- "RR"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "15"] <- "PA"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "16"] <- "AP"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "17"] <- "TO"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "21"] <- "MA"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "22"] <- "PI"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "23"] <- "CE"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "24"] <- "RN"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "25"] <- "PB"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "26"] <- "PE"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "27"] <- "AL"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "28"] <- "SE"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "29"] <- "BA"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "31"] <- "MG"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "32"] <- "ES"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "33"] <- "RJ"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "35"] <- "SP"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "41"] <- "PR"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "42"] <- "SC"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "43"] <- "RS"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "50"] <- "MS"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "51"] <- "MT"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "52"] <- "GO"
+df_pib_2010$COD_E[df_pib_2010$COD_E == "53"] <- "DF"
+df_pib_2010$ANO <- NULL
+df_pib_2010$COD_M <- NULL
+df_pib_2010$Município <- paste(df_pib_2010$`Nome do Município`, "(", sep=" ")
+df_pib_2010$Município <- paste(df_pib_2010$Município, df_pib_2010$COD_E, sep="")
+df_pib_2010$Município <- paste(df_pib_2010$Município, ")", sep="")
+names(df_pib_2010)[names(df_pib_2010) == "PIB_1000"] <- "PIB_1000_2010"
+
+# Dando merge nos dataframes
+df_merge = merge(df_idh, df_homicidios, all.x = TRUE)
+df_merge = merge(df_merge, df_pib_2005, all.x = TRUE)
+df_merge = merge(df_merge, df_pib_2010, all.x = TRUE)
+df_merge = merge(df_merge, df_populacao, by.x = "ESTADO", by.y = "Estado", all.x = TRUE)
+
+# Criando macroregião
+df_merge$macroregiao = df_merge$UF
+df_merge$macroregiao[df_merge$macroregiao == "AM" | df_merge$macroregiao == "AC" |
+                       df_merge$macroregiao == "RR" | df_merge$macroregiao == "RO" |
+                       df_merge$macroregiao == "AP" | df_merge$macroregiao == "PA" |
+                       df_merge$macroregiao == "TO"] <- "Norte"
+df_merge$macroregiao[df_merge$macroregiao == "MA" | df_merge$macroregiao == "PI" |
+                       df_merge$macroregiao == "BA" | df_merge$macroregiao == "CE" |
+                       df_merge$macroregiao == "RN" | df_merge$macroregiao == "PB" |
+                       df_merge$macroregiao == "PE" | df_merge$macroregiao == "AL" |
+                       df_merge$macroregiao == "SE"] <- "Nordeste"
+df_merge$macroregiao[df_merge$macroregiao == "MT" | df_merge$macroregiao == "GO" |
+                       df_merge$macroregiao == "DF" | df_merge$macroregiao == "MS"] <- "Centro-Oeste"
+df_merge$macroregiao[df_merge$macroregiao == "MG" | df_merge$macroregiao == "SP" |
+                       df_merge$macroregiao == "ES" | df_merge$macroregiao == "RJ"] <- "Sudeste"
+df_merge$macroregiao[df_merge$macroregiao == "PR" | df_merge$macroregiao == "SC" |
+                       df_merge$macroregiao == "RS"] <- "Sul"
+
+
+# Cria variáveis
+municipios = c(df_merge$Município)
+taxa_homicidio_2010 = c(df_merge$Taxas2010)
+populacao_2000 = c(df_merge$`População por Estado 2000`)
+populacao_2010 = c(df_merge$`População por Estado 2010`)
+pib_2005 = c(df_merge$PIB_1000_2005)
+pib_2010 = c(df_merge$PIB_1000_2010)
+idh = c(df_merge$IDHM_2010)
+ranking_idh = c(df_merge$Ranking_IDHM)
+estado = c(df_merge$ESTADO)
+macroregiao = c(df_merge$macroregiao)
+
+#Cria data frame final (V1 - V9)
+df_final <- data.frame(
+  Município = municipios,
+  `Taxa Homicídio por Município 2010` = taxa_homicidio_2010,
+  `População por estado em 2000` = populacao_2000,
+  `População por estado em 2010` = populacao_2010,
+  `PIB por Município em 2005` = pib_2005,
+  `PIB por Município em 2010` = pib_2010,
+  `IDH em 2010` = idh,
+  `Ranking do IDH em 2010` = ranking_idh,
+  `Estado` = estado,
+  Macroregião = macroregiao
+)
+
+# Criação de novas variáveis (V10 - V12)
+df_final$`Variação da população entre 2000 e 2010 por estado` <- df_final$População.por.estado.em.2010 - df_final$População.por.estado.em.2000
+df_final$`Variação do PIB entre 2005 e 2010` <- df_final$PIB.por.Município.em.2010 - df_final$PIB.por.Município.em.2005
+
+df_final$`Categorias do PIB em 2010` = "Alto"
+df_final$`Categorias do PIB em 2010`[df_final$PIB.por.Município.em.2010<quantile(df_final$PIB.por.Município.em.2010, 0.75)]="Médio"
+df_final$`Categorias do PIB em 2010`[df_final$PIB.por.Município.em.2010<quantile(df_final$PIB.por.Município.em.2010, 0.5)]="Baixo"
+df_final$`Categorias do PIB em 2010`[df_final$PIB.por.Município.em.2010<quantile(df_final$PIB.por.Município.em.2010, 0.25)]="Muito Baixo"
+
+# Cálculo de coeficientes de correlação
+df_final <- na.omit(df_final)
+
+# Correlação de taxas de homicídio X IDH
+cor(df_final$Taxa.Homicídio.por.Município.2010, df_final$IDH.em.2010)
+
+# Correlação de taxas de homicídio X PIB
+cor(df_final$Taxa.Homicídio.por.Município.2010, df_final$`Variação do PIB entre 2005 e 2010`)
+
+# Correlação de IDH X PIB
+cor(df_final$IDH.em.2010, df_final$`Variação do PIB entre 2005 e 2010`)
